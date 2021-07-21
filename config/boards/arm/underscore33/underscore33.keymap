@@ -12,6 +12,7 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
 
 
 #define DEFAULT 0
@@ -20,81 +21,81 @@
 #define FN      3
 
 / {
-
-behaviors {
-      hm: homerow_mods {
-        compatible = "zmk,behavior-hold-tap";
-        label = "HOMEROW_MODS";
-        #binding-cells = <2>;
-        tapping_term_ms = <225>;
-        flavor = "tap-preferred";
-        bindings = <&kp>, <&kp>;
+    behaviors {
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS";
+            #binding-cells = <2>;
+            tapping_term_ms = <225>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
     };
+};
 
+/ {
     combos {
-    compatible = "zmk,combos";
-    combo_del {
-        timeout-ms = <50>;
-        key-positions = <7 8>;
-        bindings = <&kp DEL>;
-    };
-    combo_bspc {
-        timeout-ms = <50>;
-        key-positions = <8 9>;
-        bindings = <&kp BKSP>;
-    };
-    combo_tab {
-        timeout-ms = <50>;
-        key-positions = <0 1>;
-        bindings = <&kp TAB>;
-    };
-    combo_esc {
-        timeout-ms = <50>;
-        key-positions = <1 2>;
-        bindings = <&kp ESC>;
+        compatible = "zmk,combos";
+        combo_del {
+            timeout-ms = <50>;
+            key-positions = <7 8>;
+            bindings = <&kp DEL>;
+        };
+        combo_bspc {
+            timeout-ms = <50>;
+            key-positions = <8 9>;
+            bindings = <&kp BKSP>;
+        };
+        combo_tab {
+            timeout-ms = <50>;
+            key-positions = <0 1>;
+            bindings = <&kp TAB>;
+        };
+        combo_esc {
+            timeout-ms = <50>;
+            key-positions = <1 2>;
+            bindings = <&kp ESC>;
+        };
     };
 };
 
-};
-        keymap {
-                compatible = "zmk,keymap";
+/{
+    keymap {
+        compatible = "zmk,keymap";
+        default_layer {
+            bindings = <
+                &kp Q       &kp W      &kp E       &kp R       &kp T  &kp Y  &kp U       &kp I      &kp O      &kp P
+                &hm LCTRL A &hm LGUI S &hm LALT D  &hm LSHFT F &kp G  &kp H  &hm RSHFT J &hm RALT K &hm RGUI L &hm RCTRL RET
+                &kp Z       &kp X      &kp C       &kp V       &kp B  &kp N  &kp M       &kp COMMA  &kp DOT    &kp FSLH
+                           &kp LCTRL              &lt SYM SPC               &mo NAV    
+            >;
+        };
 
-                default_layer {
-                        bindings = <
-   &kp Q       &kp W      &kp E       &kp R       &kp T  &kp Y  &kp U       &kp I      &kp O      &kp P
-   &hm LCTRL A &hm LGUI S &hm LALT D  &hm LSHFT F &kp G  &kp H  &hm RSHFT J &hm RALT K &hm RGUI L &hm RCTRL RET
-   &kp Z       &kp X      &kp C       &kp V       &kp B  &kp N  &kp M       &kp COMMA  &kp DOT    &kp FSLH
-               &kp LCTRL              &lt SYM SPC               &mo NAV    
-                        >;
-                };
-
-                sym_layer {
-                        bindings = <
-   &kp N1    &kp N2    &kp N3    &kp N4      &kp N5      &kp N6    &kp N7    &kp N8    &kp N9     &kp N0
-   &none     &none     &none    &kp LSHFT    &none       &kp GRAVE &kp MINUS &kp EQUAL &kp SEMI   &kp SQT
-   &none     &none     &none    &none        &none       &none     &kp BSLH  &kp LBKT  &kp RBKT   &trans
-   &trans    &trans    &trans
-                        >;
-                };
-
-                nav_layer {
-                        bindings = <
+        sym_layer {
+            bindings = <
+                &kp N1    &kp N2    &kp N3    &kp N4      &kp N5      &kp N6    &kp N7    &kp N8    &kp N9     &kp N0
+                &none     &none     &none    &kp LSHFT    &none       &kp GRAVE &kp MINUS &kp EQUAL &kp SEMI   &kp SQT
+                &none     &none     &none    &none        &none       &none     &kp BSLH  &kp LBKT  &kp RBKT   &trans
+                &trans    &trans    &trans
+            >;
+        };
+        
+        nav_layer {
+            bindings = <
                 &kp PSCRN   &none     &none         &none        &none         &none        &kp HOME      &kp UP        &kp END     &kp PG_UP
                 &kp LCTRL   &kp LGUI  &kp LALT      &kp LSHFT    &none         &none        &kp LEFT      &kp DOWN      &kp RIGHT   &kp PG_DN
                 &kp C_PREV  &kp C_PP  &kp C_NEXT    &kp K_MUTE   &kp C_VOL_DN  &kp C_VOL_UP &none         &none         &none       &mo FN
                 &none      &none      &none
             >;
-                };
+       };
                 
-                fn_layer {
-                        bindings = <
+       fn_layer {
+            bindings = <
                 &kp F1        &kp F2       &kp F3   &kp F4   &kp F5  &kp F6       &kp F7       &kp F8       &kp F9      &kp F10
                 &kp F20       &kp F21      &kp F22  &kp F23  &none   &none        &none        &none        &bt BT_PRV  &bt BT_NXT 
                 &out OUT_USB  &out OUT_BLE &none    &none    &none   &bt BT_SEL 2 &bt BT_SEL 1 &bt BT_SEL 0 &bt BT_CLR  &none
                 &reset      &none      &none
             >;
-                };
-
-
-        };
+       };
+    };
 };
