@@ -60,11 +60,6 @@ behaviors {
                 compatible = "zmk,keymap";
 
                 default_layer {
-// -----------------------------------------------------------------------------------------
-// |  Q  |  W  |  E  |  R  |  T   |  Y  |  U   |  I  |  O  |  P  |
-// |  A  |  S  |  D  |  F  |  G   |  H  |  J   |  K  |  L  |  ;  |
-// |  Z  |  X  |  C  |  V  |  B   |  N  |  M   |  ,  |  .  |  /  |
-//             | CTL | ALT |  ENT | SPC | GUI  | CTL |
                         bindings = <
    &kp Q       &kp W      &kp E       &kp R       &kp T  &kp Y  &kp U       &kp I      &kp O      &kp P
    &hm LCTRL A &hm LGUI S &hm LALT D  &hm LSHFT F &kp G  &kp H  &hm RSHFT J &hm RALT K &hm RGUI L &hm RCTRL RET
@@ -74,30 +69,29 @@ behaviors {
                 };
 
                 sym_layer {
-// -----------------------------------------------------------------------------------------
-// |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  0  |
-// |  !  |  @  |  #  |  $  |  %  |  ^  |  &  |  *  |  =  |  -  |
-// |  \  |  {  |  [  |  (  |  _  |  )  |  ]  |  }  |  .  |  `  |
-//             | CTL | ALT |  ENT | SPC | GUI  | CTL |
                         bindings = <
    &kp N1    &kp N2    &kp N3    &kp N4      &kp N5      &kp N6    &kp N7    &kp N8    &kp N9     &kp N0
-   &trans    &none     &none    &kp LSHFT    &none       &kp GRAVE &kp MINUS &kp EQUAL &kp SEMI   &kp SQT
-   &trans    &none     &none    &none        &none       &none     &kp BSLH  &kp LBKT  &kp RBKT   &trans
+   &none     &none     &none    &kp LSHFT    &none       &kp GRAVE &kp MINUS &kp EQUAL &kp SEMI   &kp SQT
+   &none     &none     &none    &none        &none       &none     &kp BSLH  &kp LBKT  &kp RBKT   &trans
    &trans    &trans    &trans
                         >;
                 };
 
                 nav_layer {
-// -----------------------------------------------------------------------------------------
-// |BTCLR| RST |     |      |     |      | PGDN |  UP  | PGUP |      |
-// | BT0 |CMENU|     |      |     | HOME | LEFT | DOWN |RIGHT | END  |
-// | BT1 | BOOT|     |      |     |      |      |      |      |      |
-//             | CTL | ALT |  ENT | SPC | GUI  | CTL |
                         bindings = <
                 &kp PSCRN   &none     &none         &none        &none         &none        &kp HOME      &kp UP        &kp END     &kp PG_UP
                 &kp LCTRL   &kp LGUI  &kp LALT      &kp LSHFT    &none         &none        &kp LEFT      &kp DOWN      &kp RIGHT   &kp PG_DN
-                &kp C_PREV  &kp C_PP  &kp C_NEXT    &kp K_MUTE   &kp C_VOL_DN  &kp C_VOL_UP &none         &none         &none       &none
+                &kp C_PREV  &kp C_PP  &kp C_NEXT    &kp K_MUTE   &kp C_VOL_DN  &kp C_VOL_UP &none         &none         &none       &mo FN
                 &none      &none      &none
+            >;
+                };
+                
+                fn_layer {
+                        bindings = <
+                &kp F1        &kp F2       &kp F3   &kp F4   &kp F5  &kp F6       &kp F7       &kp F8       &kp F9      &kp F10
+                &kp F20       &kp F21      &kp F22  &kp F23  &none   &none        &none        &none        &bt BT_PRV  &bt BT_NXT 
+                &out OUT_USB  &out OUT_BLE &none    &none    &none   &bt BT_SEL 2 &bt BT_SEL 1 &bt BT_SEL 0 &bt BT_CLR  &none
+                &reset      &none      &none
             >;
                 };
 
